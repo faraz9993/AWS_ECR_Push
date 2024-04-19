@@ -7,7 +7,7 @@ on:
 env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: lravel_private
-  ECR_REGISTRY: public.ecr.aws/f6m2c3b2
+  ECR_REGISTRY: 327963460774.dkr.ecr.us-east-1.amazonaws.com
 
 jobs:
   Cypress-Test:
