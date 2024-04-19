@@ -7,6 +7,7 @@ on:
 env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: lravel_repo
+  ECR_REGISTRY: public.ecr.aws/f6m2c3b2/
 
 jobs:
   Cypress-Test:
@@ -30,7 +31,6 @@ jobs:
       - name: Build, tag, and push docker image to Amazon ECR
         id: build-image
         env:
-          ECR_REGISTRY: public.ecr.aws/f6m2c3b2/
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f workflows/Dockerfile .
