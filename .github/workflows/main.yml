@@ -29,5 +29,5 @@ jobs:
           REPOSITORY: my-ecr-repo
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -f Dockerfile .
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -f workflows/Dockerfile .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
