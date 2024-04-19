@@ -1,3 +1,4 @@
+name: Pushing Docker Image to ECR
 jobs:
   ECR-push:
     name: Build Docker Image
