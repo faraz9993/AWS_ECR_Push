@@ -33,5 +33,6 @@ jobs:
         env:
           IMAGE_TAG: ${{ github.sha }}
         run: |
+          aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/f6m2c3b2
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f workflows/Dockerfile .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
