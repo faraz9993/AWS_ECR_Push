@@ -3,7 +3,11 @@ on:
   push: 
     branches:
     - main
-  
+
+env:
+  AWS_REGION: us-east-1
+  ECR_REPOSITORY: lravel_repo
+
 jobs:
   Cypress-Test:
     name: Build Docker Image
@@ -17,16 +21,16 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{secrets.AWS_REGION}}
+          aws-region: ${{ env.AWS_REGION}}
 
       - name: Login to Amazon ECR
         id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2
+        uses: aws-actions/amazon-ecr-login@v1
  
       - name: Build, tag, and push docker image to Amazon ECR
+        id: build-image
         env:
-          REGISTRY: public.ecr.aws/f6m2c3b2/
-          REPOSITORY: lravel_repo
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           #  IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t $REGISTRY/$REPOSITORY:latest -f workflows/Dockerfile .
