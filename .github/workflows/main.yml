@@ -6,7 +6,7 @@ on:
 
 env:
   AWS_REGION: us-east-1
-  ECR_REPOSITORY: farazrepo
+  ECR_REPOSITORY: faraz
   ECR_REGISTRY: 327963460774.dkr.ecr.us-east-1.amazonaws.com #testing
 
 jobs:
